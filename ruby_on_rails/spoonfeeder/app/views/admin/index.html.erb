@@ -1,0 +1,5 @@
+<h1>Welcome, <%= current_user.name %></h1> 
+<p>You logged in <%= @time.strftime("%B %e, %Y at %H:%M:%S") %></p>
+<p>SPOONFEEDER has <%= pluralize(@total_users, "user") %>.</p>
+
+<div><%= link_to 'Posts', posts_path %></div>

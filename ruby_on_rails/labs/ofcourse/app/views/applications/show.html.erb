@@ -1,0 +1,31 @@
+<div class="page-header">
+	<h2>Details about <strong>"<%= @app.application_name %>"</strong>
+	<small>created <%= time_ago_in_words(@app.created_at) %> ago</small></h2>
+</div>
+<div class="row">
+	<div class="col-md-8">
+		<p class="lead">
+			<span class="label label-default">Created by</span>			
+			<br />
+			<%= @app.developer.email %>
+		</p>
+		<p class="lead">
+			<span class="label label-default">Access token</span>
+			<br />
+			<%= @key.access_token %>
+		</p>
+		<p class="lead">
+			<span class="label label-default">Request counter</span>
+			<br />
+			<%= @key.request_counter %>
+		</p>
+	</div>
+	<div class="col-md-4">
+		<div class="well">
+		  <%= link_to 'Back to apps', developer_home_path, :class =>'btn btn-success btn-block' %>		  
+		  <% if @app.developer.is_admin %>
+		  <%= button_to 'Remove this app', @app, :method => :delete, :class => 'btn btn-danger btn-block' %>
+		  <% end %>
+		</div>
+	</div>	
+</div>

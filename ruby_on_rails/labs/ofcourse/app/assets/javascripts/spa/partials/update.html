@@ -1,0 +1,19 @@
+<div class="page-header">
+	<h1>Update resource</h1>
+</div>
+
+<form name="editForm" novalidate>	
+	<div class="form-group">
+	    <label for="resource_title">Title</label>
+	    <input type="text" name="resource_title" ng-model="editResource.title" class="form-control">
+	</div>
+	<div class="form-group">
+	    <label for="resource-content">Content</label>
+	    <input type="text" name="resource_content" ng-model="editResource.content" class="form-control">
+	</div>	
+	<a class="btn btn-warning pull-left" href="#/">Cancel</a>
+	<div class="pull-right">
+    	<a ng-click="delete()" class="btn btn-danger">Delete</a>
+    	<a class="btn btn-success" ng-click="update()">Save</a>
+  	</div>	
+</form>

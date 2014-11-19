@@ -1,0 +1,217 @@
+﻿@import url('bootstrap/css/bootstrap.min.css');
+@import url('toastr.css');
+
+body
+{
+    background: #fff url("top-bg.png") repeat-x;
+    overflow-x: hidden;
+}
+
+
+/* search section */
+.search
+{
+    margin: 0 auto !important;
+    padding: 40px 0;
+}
+
+.logo
+{
+    margin: 0px auto !important;
+    color: #ff6600;
+    text-indent: 9900px;
+    background: transparent url("top-logo.png") no-repeat 0 10px;
+}
+
+/* movie section */
+.search-result > h1
+{
+    font-size: 50px;
+    font-weight: bolder;
+    text-shadow: 0 0 2px #333;
+}
+
+.search-result > h2
+{
+    font-size: 40px;
+    color: #ff6600;
+    text-shadow: 0 0 2px #ff6600;
+}
+
+    .search-result > h2 > small
+    {
+        text-shadow: none;
+        font-size: 12px;
+    }
+
+.search-result > p
+{
+    margin-top: 20px;
+    max-width: 650px;
+    line-height: 1.5;
+    color: #222;
+    font-size: 19px;
+    text-shadow: 0 0 1px #333;
+}
+
+.movie-poster
+{
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 2px #333;
+    border-radius: 5px;
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.ajax-feedback
+{
+    margin: 100px auto;
+    font-size: 18px;
+    text-align: center;
+    text-shadow: 0 0 1px #333;
+    background: none;
+}
+
+.movie-list
+{
+    display: inline-block;
+    width: 100%;
+    margin: 10px auto;
+    padding: 20px 0;
+}
+
+    .movie-list p
+    {
+        font-size: 22px;
+    }
+
+    .movie-list a
+    {
+        display: block;
+        float: right;
+        margin-right: 10px;
+    }
+
+.loading
+{
+    padding-top: 80px;
+    background: url(../Images/preloader.gif) no-repeat top center;
+}
+
+/* general */
+.push-bottom
+{
+    margin-bottom: 40px;
+}
+
+/* Autocomplete @author https://gist.github.com/daz/2168334 */
+.ui-autocomplete
+{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    display: none;
+    min-width: 160px;
+    _width: 160px;
+    padding: 4px 0;
+    margin: 2px 0 0 0;
+    list-style: none;
+    background-color: #ffffff;
+    border-color: #ccc;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+}
+
+.ui-menu-item > a.ui-corner-all
+{
+    display: block;
+    padding: 10px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.ui-state-hover, 
+.ui-state-active
+{
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #0088cc;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    background-image: none;    
+}
+/********************
+*   Mobile Styles   *
+********************/
+@media only screen and (max-width: 991px)
+{
+    .logo
+    {
+        padding: 20px 0;
+    }
+
+    .search-result
+    {
+        text-shadow: none;
+    }
+
+        .search-result > h1
+        {
+            font-size: 20px;
+        }
+
+        .search-result > h2
+        {
+            font-size: 18px;
+        }
+
+            .search-result > h2 > small
+            {
+                text-shadow: none;
+                font-size: 12px;
+            }
+
+        .search-result > p
+        {
+            font-size: 14px;
+        }
+}
+
+@media only screen and (max-width: 450px)
+{
+    .movie-list p
+    {
+        font-size: initial;
+    }
+
+    .movie-list a
+    {
+        float: none;
+        margin: 0 auto;
+    }
+
+    small
+    {
+        display: none;
+    }
+}

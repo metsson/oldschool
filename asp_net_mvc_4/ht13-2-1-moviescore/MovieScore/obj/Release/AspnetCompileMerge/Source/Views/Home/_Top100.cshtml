@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MovieScore.Models.Movie>
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length <= length)
+    {
+    @input
+    }
+    else
+    {
+    @input.Substring(0, length)<text>...</text>
+    }
+}
+
+@* The pain of working with anonymous types... *@
+@helper Indexer(int index)
+{
+    @Html.Raw(index += 1)
+}
+<div class="page-header">
+    <h2>Top 100 movies <small>Based upon our own scoring system</small>
+    </h2>
+</div>
+
+<div class="list-group" id="top100">
+
+    @foreach (var movie in Model.Select((x, i) => new { Data = x, Index = i }))
+    {
+        <a href="#@Url.Action("Movie", "Home", new { id = @movie.Data.MovieID })" title="More about @movie.Data.Title" class="list-group-item">
+            <span class="label label-default pull-right">#@Indexer(movie.Index)</span>
+            <span class="label label-success">@movie.Data.Score/10</span>
+            @Truncate(movie.Data.Title, 30)
+        </a>
+    }
+</div>

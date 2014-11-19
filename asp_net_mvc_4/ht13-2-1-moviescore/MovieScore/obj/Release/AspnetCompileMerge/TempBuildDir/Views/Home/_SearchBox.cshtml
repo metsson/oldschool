@@ -1,0 +1,46 @@
+﻿@model MovieScore.Models.ViewModels.SearchViewModel
+
+@{
+    var ajaxOptions = new AjaxOptions
+    {
+        UpdateTargetId = "search-result",
+        Url = Url.Action("Index"),
+        OnSuccess = "success",
+        OnFailure = "failure",
+        OnBegin = "loading",
+        OnComplete = "queryCompleted"
+    };    
+}
+
+<!-- Search box -->
+<section class="search">
+    @* Posts a keyword to the HomeController *@
+    @using (Ajax.BeginForm(ajaxOptions))
+    { 
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-md-4">
+                <h1 class="logo">moviecheck</h1>
+            </div>
+            <div class="col-md-8">
+                <div class="input-group" id="search-form">
+                    <input type="text" name="Keyword" id="Keyword" class="form-control" placeholder="Enter movie title and get real ratings...">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+                <!-- /input-group -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>                
+    }
+</section>
+<!-- /Search box -->
+
+<!-- Search result -->
+<div id="search-result">
+    @Html.Partial("_MovieDetails")
+</div>
+<!-- /Search result -->

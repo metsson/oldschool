@@ -1,0 +1,39 @@
+<div class="page-header">
+	<h1>Resources</h1>
+</div>
+<!-- Filter for showing resources that match in title, desc or tag -->
+<form role="form">
+	<div class="form-group">
+		<input type="text" class="form-control" data-ng-model="keyword" placeholder="Search resources by title, content or tags...">
+	</div>	
+</form>
+<!-- Resources are retrieved through restangular and injected to the $scope -->
+<div class="appCanvas" data-infinite-scrolling="loadResources()">
+	<div ng-repeat="resource in resources | orderBy: '-resource.resource.id' | filter:keyword track by $index">
+		<h2> 			
+			<!-- Just to see the infite scrolling in action -->
+			<small>#{{ resource.resource.id }}</small>
+			{{ resource.resource.title }}		 
+		</h2>	
+			<p class="text-muted">
+				<span class="label label-warning">
+					{{ resource.resource.more.about_resource.resource_type }}
+				</span>
+				<br>			
+				Authored by <strong>{{ resource.resource.more.about_resource.author_name }}</strong> and licensed under 
+				<strong>{{ resource.resource.more.about_resource.resource_license}}</strong>
+			</p>	
+		<p>
+			<a href="#/update/{{ resource.resource.id }}" class="btn btn-info">Edit</a>		
+		<p class="lead" data-ng-bind-html="resource.resource.content | linkify"> 			
+		</p>	
+		<small>
+			<span class="label label-default">Tags</span>
+				<span ng-repeat="tag in resource.resource.more.about_resource.tags">
+				{{ tag }}
+				</span>
+		</small>
+		<hr>
+	</div>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-full-width'}"></toaster-container>

@@ -1,0 +1,14 @@
+<% @posts.each do |post| %>
+  <div class="post-box">
+    <h2><%= link_to post.title, post %></h2>
+    <p><%= truncate(post.entry, length: 100) %></p>
+    <small>Published by <%= current_user.name %> <%= time_ago_in_words(post.created_at) %> ago</small>
+  </div>
+<% end %>
+
+<br />
+<div class="actions">
+  <%= link_to 'New Post', new_post_path %> |
+  <%= link_to 'Admin', admin_path %> |
+  <%= link_to 'ChooChoo', activities_path %>
+</div>

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MovieDataModelStoreContainer" CdmEntityContainer="MovieScoreModelEntities">
+    <EntitySetMapping Name="Movies">
+      <EntityTypeMapping TypeName="MovieDataModel.Movie">
+        <MappingFragment StoreEntitySet="Movie">
+          <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="LastCheck" ColumnName="LastCheck" />
+          <ScalarProperty Name="IMDbID" ColumnName="IMDbID" />
+          <ScalarProperty Name="TitleSw" ColumnName="TitleSw" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="MovieDataModel.Movie">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="MovieDataModel.Store.usp_AddMovie">
+            <ScalarProperty Name="Description" ParameterName="Description" />
+            <ScalarProperty Name="Title" ParameterName="Title" />
+            <ScalarProperty Name="TitleSw" ParameterName="TitleSw" />
+            <ScalarProperty Name="IMDbID" ParameterName="IMDbID" />
+            <ScalarProperty Name="LastCheck" ParameterName="LastCheck" />
+            <ScalarProperty Name="Score" ParameterName="Score" />
+            <ResultBinding Name="MovieID" ColumnName="Column" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="MovieDataModel.Store.usp_EditMovie">
+            <ScalarProperty Name="Description" ParameterName="Description" Version="Current" />
+            <ScalarProperty Name="Title" ParameterName="Title" Version="Current" />
+            <ScalarProperty Name="TitleSw" ParameterName="TitleSw" Version="Current" />
+            <ScalarProperty Name="IMDbID" ParameterName="IMDbID" Version="Current" />
+            <ScalarProperty Name="LastCheck" ParameterName="LastCheck" Version="Current" />
+            <ScalarProperty Name="Score" ParameterName="Score" Version="Current" />
+            <ScalarProperty Name="MovieID" ParameterName="MovieID" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="MovieDataModel.Store.usp_GetMovies" />
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usp_AddMovie" FunctionName="MovieDataModel.Store.usp_AddMovie" />
+    <FunctionImportMapping FunctionImportName="usp_DeleteMovie" FunctionName="MovieDataModel.Store.usp_DeleteMovie" />
+    <FunctionImportMapping FunctionImportName="usp_EditMovie" FunctionName="MovieDataModel.Store.usp_EditMovie" />
+    <FunctionImportMapping FunctionImportName="usp_GetMovie" FunctionName="MovieDataModel.Store.usp_GetMovie">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MovieDataModel.usp_GetMovie_Result">
+          <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="LastCheck" ColumnName="LastCheck" />
+          <ScalarProperty Name="IMDbID" ColumnName="IMDbID" />
+          <ScalarProperty Name="TitleSw" ColumnName="TitleSw" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_GetMovies" FunctionName="MovieDataModel.Store.usp_GetMovies">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MovieDataModel.usp_GetMovies_Result">
+          <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="LastCheck" ColumnName="LastCheck" />
+          <ScalarProperty Name="IMDbID" ColumnName="IMDbID" />
+          <ScalarProperty Name="TitleSw" ColumnName="TitleSw" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

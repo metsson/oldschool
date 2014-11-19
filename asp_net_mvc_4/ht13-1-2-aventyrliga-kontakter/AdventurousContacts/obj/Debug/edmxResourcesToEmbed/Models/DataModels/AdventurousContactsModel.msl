@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dv409_AdventureWorksAssignmentModelStoreContainer" CdmEntityContainer="AdventurousContactsEntities">
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="dv409_AdventureWorksAssignmentModel.Contact">
+        <MappingFragment StoreEntitySet="Contact">
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="dv409_AdventureWorksAssignmentModel.Contact">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="dv409_AdventureWorksAssignmentModel.Store.uspAddContactEF">
+            <ScalarProperty Name="EmailAddress" ParameterName="EmailAddress" />
+            <ScalarProperty Name="LastName" ParameterName="LastName" />
+            <ScalarProperty Name="FirstName" ParameterName="FirstName" />
+            <ResultBinding Name="ContactID" ColumnName="NewContactId" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="dv409_AdventureWorksAssignmentModel.Store.uspUpdateContact">
+            <ScalarProperty Name="EmailAddress" ParameterName="EmailAddress" Version="Current" />
+            <ScalarProperty Name="LastName" ParameterName="LastName" Version="Current" />
+            <ScalarProperty Name="FirstName" ParameterName="FirstName" Version="Current" />
+            <ScalarProperty Name="ContactID" ParameterName="ContactID" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="dv409_AdventureWorksAssignmentModel.Store.uspRemoveContact">
+            <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

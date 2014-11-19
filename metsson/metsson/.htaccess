@@ -1,0 +1,7 @@
+ Redirect /random/semesterfiraren/ http://metsson.se/blogged-out.html
+ Redirect /random/ville-bara-meddela http://metsson.se/blogged-out.html
+ Redirect /random/hej-fattigdom/ http://metsson.se/blogged-out.html
+ Redirect /projekt/lata-sommardagar/ http://metsson.se/blogged-out.html
+ Redirect /random/felsokning-och-somnloshet/ http://metsson.se/blogged-out.html
+ ErrorDocument 404 http://metsson.se/
+ ErrorDocument 403 http://metsson.se/

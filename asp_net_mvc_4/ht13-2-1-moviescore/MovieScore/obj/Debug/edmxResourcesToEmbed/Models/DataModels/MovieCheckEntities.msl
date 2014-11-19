@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MovieStoreContainer" CdmEntityContainer="MSEntities">
+    <EntitySetMapping Name="Movies">
+      <EntityTypeMapping TypeName="Movie.Movie">
+        <MappingFragment StoreEntitySet="Movie">
+          <ScalarProperty Name="Poster" ColumnName="Poster" />
+          <ScalarProperty Name="Plot" ColumnName="Plot" />
+          <ScalarProperty Name="Voters" ColumnName="Voters" />
+          <ScalarProperty Name="Credibility" ColumnName="Credibility" />
+          <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="LastCheck" ColumnName="LastCheck" />
+          <ScalarProperty Name="IMDbID" ColumnName="IMDbID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="Movie.Movie">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="Movie.Store.usp_AddMovie">
+            <ScalarProperty Name="Poster" ParameterName="Poster" />
+            <ScalarProperty Name="Plot" ParameterName="Plot" />
+            <ScalarProperty Name="Voters" ParameterName="Voters" />
+            <ScalarProperty Name="Credibility" ParameterName="Credibility" />
+            <ScalarProperty Name="Title" ParameterName="Title" />
+            <ScalarProperty Name="IMDbID" ParameterName="IMDbID" />
+            <ScalarProperty Name="LastCheck" ParameterName="LastCheck" />
+            <ScalarProperty Name="Score" ParameterName="Score" />
+            <ResultBinding Name="MovieID" ColumnName="NewMovieID" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="Movie.Store.usp_EditMovie">
+            <ScalarProperty Name="Poster" ParameterName="Poster" Version="Current" />
+            <ScalarProperty Name="Plot" ParameterName="Plot" Version="Current" />
+            <ScalarProperty Name="Voters" ParameterName="Voters" Version="Current" />
+            <ScalarProperty Name="Credibility" ParameterName="Credibility" Version="Current" />
+            <ScalarProperty Name="Title" ParameterName="Title" Version="Current" />
+            <ScalarProperty Name="IMDbID" ParameterName="IMDbID" Version="Current" />
+            <ScalarProperty Name="LastCheck" ParameterName="LastCheck" Version="Current" />
+            <ScalarProperty Name="Score" ParameterName="Score" Version="Current" />
+            <ScalarProperty Name="MovieID" ParameterName="MovieID" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="Movie.Store.usp_DeleteMovie">
+            <ScalarProperty Name="MovieID" ParameterName="MovieID" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

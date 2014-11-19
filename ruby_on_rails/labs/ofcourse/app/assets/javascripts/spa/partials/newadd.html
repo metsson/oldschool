@@ -1,0 +1,102 @@
+<div class="container">
+<form role="form">
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="form-steps">
+      <p><span>1</span> Basic routine info</p>
+      </div>
+      <!-- Routine basic -->
+      <div class="form-group">
+        <label for="routineName">Name</label>
+        <input type="text" class="form-control" id="routineName" placeholder="My awesome routine"
+        ng-model="routine.name">
+        <p class="help-block">Name your routine, e.g. 'My morning routine' or 'Medications'</p>
+      </div>
+      <div class="form-group">
+        <label for="routineDescription">About</label>
+        <textarea class="form-control" id="routineDescription" rows="3" ng-model="routine.about"></textarea>
+        <p class="help-block">Give your routine a short description (optional).</p>
+      </div>
+      <div class="form-group">
+        <label>Routine items</label>
+        <div class="input-group pushed" ng-repeat="item in routine.routine_items">
+          <input type="text" class="form-control" ng-model="item.item" placeholder="Routine item">
+          <span class="input-group-btn">
+            <button class="btn btn-warning" type="button"
+              ng-show="routine.routine_items.length == 1 && $index == 0"
+              ng-click="routine.routine_items[$index].item = ''">
+              <span class="glyphicon glyphicon-minus"></span>
+              </button>
+            <button class="btn btn-danger" type="button"
+              ng-show="routine.routine_items.length > 1 && $index > 0"
+              ng-click="routine.routine_items.splice($index, 1)">
+              <span class="glyphicon glyphicon-minus"></span>
+              </button>
+            <button class="btn btn-default" type="button" ng-click="routine.routine_items.push({})">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </span>
+        </div>
+        <p class="help-block">Routine items are optional, but they make your routine complete!</p>
+      </div>
+      <!-- Routine basic -->
+    </div>
+    <div class="col-lg-5">
+      <div class="form-steps">
+        <p><span>2</span> Details</p>
+      </div>
+      <!-- Routine details -->
+      <div class="form-group">
+        <label for="routineType">Choose routine type</label>
+        <label class="radio-inline" ng-repeat="routine_type in routine_types">
+          <input type="radio" name="{{routine_type}}" ng-model="routine.routine_type" value="{{routine_type}}" id="$index">
+          <span class="label label-danger">{{routine_type}}</span>
+        </label>
+        <p class="help-block">Choose existing or <button class="btn btn-default" data-ng-click="addNew = !addNew">Add new</button></p>
+      </div>
+      <div class="form-group animated fadeIn" collapse="!addNew">
+        <label>Name your new routine type</label>
+        <input type="text" class="form-control" ng-model="new_routine_type"
+        typeahead="routine_type.routine_type for routine_type in routine_types | filter:$viewValue | limitTo:8">
+      </div>
+      <div class="form-group">
+        <label for="priorities">Choose priority </label>
+        <label class="radio-inline">
+          <input type="radio" name="priority" id="priority1" ng-model="routine.priority" value="1">
+          <span class="label label-danger">Prio 1</span>
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="priority" id="priority2" ng-model="routine.priority" value="2">
+          <span class="label label-warning">Prio 2</span>
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="priority" id="priority3" ng-model="routine.priority" value="3">
+          <span class="label label-info">Prio 3</span>
+        </label>
+        <p class="help-block">Priority is optional, <em>Prio 2</em> set as default.</p>
+      </div>
+      <div class="form-group">
+        <label for="routineType">Repeat</label>
+        <div class="row">
+          <div class="col-xs-2">
+            <p class="help-block">Every</p>
+          </div>
+          <div class="col-xs-3">
+            <input type="number" step="1" class="form-control" id="routineName" placeholder="2"
+            ng-model="routine.frequency" ng-change="explainFrequency()">
+          </div>
+          <div class="col-xs-6">
+            <select class="form-control" id="routineType" ng-model="chosenFrequencyType"
+              ng-options="frequency.name for frequency in routineHelpers.frequencyTypes" ng-change="explainFrequency()">
+            </select>
+          </div>
+        </div>
+        <p class="help-block">{{frequency_explained}}</p>
+      </div>
+      <!-- Routine details -->
+        <button type="submit" ng-click="save()" class="btn btn-success btn-lg btn-block">
+        <span class="glyphicon glyphicon-ok"></span> Save</button>
+    </div>
+  </div>
+</form>
+</div>

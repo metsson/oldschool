@@ -1,0 +1,30 @@
+﻿@model IEnumerable<AdventurousContacts.Models.Contact>
+
+@{
+    ViewBag.Title = "Kontaktlista";
+}
+
+@if (Model != null)
+{    
+<ul class="list-group">
+@foreach (var contact in Model)
+{
+    <li class="list-group-item">
+        <h4 class="list-group-item-heading">
+            @Html.DisplayFor(c => contact.FirstName) @Html.DisplayFor(c => contact.LastName)
+        </h4>
+        <p class="list-group-item-text">
+            @Html.DisplayFor(c => contact.EmailAddress)           
+        </p>
+        <p>
+            @Html.ActionLink("Redigera", "Edit", new { id = contact.ContactID }) |
+            @Html.ActionLink("Ta bort", "Delete", new { id = contact.ContactID })
+        </p>                        
+    </li>
+}
+</ul>        
+}
+else
+{
+    <p>Det finns tyvärr inga kontakter att visa.</p> 
+}

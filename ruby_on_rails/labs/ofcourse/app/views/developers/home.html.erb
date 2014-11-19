@@ -1,0 +1,21 @@
+<% if flash[:developer] %>
+<div class="alert alert-success">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	<p><%= flash[:developer] %></p>
+</div>
+<% end %>
+<div class="list-group">
+	<%= link_to '+ Set up a new app', new_application_path, :class => 'list-group-item active text-center' %>
+</div>
+<% # Render list of registred apps, if any %>
+<% if @developer.applications.count == 0 %>
+	<p class="lead text-center">
+		You don't seem to have set up any app yet. 		
+	</p>	
+<% else %>		
+	<% @developer.applications.each do |app| %>
+	<div class="list-group">
+	  <%= link_to app.application_name, app, :class => 'list-group-item' %>
+	</div>		
+	<% end %>		
+<% end %>

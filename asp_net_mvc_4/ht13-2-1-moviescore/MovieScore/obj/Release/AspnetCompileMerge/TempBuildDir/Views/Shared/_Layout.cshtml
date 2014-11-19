@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title &ndash; for better movie ratings</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div id="fb-root"></div>
+    <header>
+        <nav>
+            <div class="navbar navbar-default navbar-static-top" role="navigation">
+                <div class="container">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#@Url.Action("Top100", "Home")"><span class="glyphicon glyphicon-list"></span> Top 100</a></li>
+                        <li><a href="#@Url.Action("About", "Home")"><span class="glyphicon glyphicon-question-sign"></span> About</a></li>
+                    </ul>
+                    @Html.Partial("_SearchBox")
+                </div>
+            </div> 
+        </nav>
+    </header>
+    <div class="container" id="content">
+        @RenderBody()
+    </div>
+    <!-- .container -->
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")    
+    @Scripts.Render("~/bundles/MovieSearch")
+    @Scripts.Render("~/bundles/AutoComplete")
+    @Scripts.Render("~/bundles/spa")
+    @RenderSection("scripts", required: false)
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
+            var routing = new Routing('@Url.Content("~/")', '#content', 'Home/SPAStart');
+            routing.init();
+        });
+    </script>
+</body>
+</html>

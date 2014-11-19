@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dv409_AdventureWorksAssignmentModelStoreContainer" CdmEntityContainer="AdventurousContactsEntities">
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="dv409_AdventureWorksAssignmentModel.Contact">
+        <MappingFragment StoreEntitySet="Contact">
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="dv409_AdventureWorksAssignmentModel.Contact">
+        <ModificationFunctionMapping>
+          <UpdateFunction FunctionName="dv409_AdventureWorksAssignmentModel.Store.uspUpdateContact">
+            <ScalarProperty Name="EmailAddress" ParameterName="EmailAddress" Version="Current" />
+            <ScalarProperty Name="LastName" ParameterName="LastName" Version="Current" />
+            <ScalarProperty Name="FirstName" ParameterName="FirstName" Version="Current" />
+            <ScalarProperty Name="ContactID" ParameterName="ContactID" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="dv409_AdventureWorksAssignmentModel.Store.uspRemoveContact">
+            <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+          </DeleteFunction>
+          <InsertFunction FunctionName="dv409_AdventureWorksAssignmentModel.Store.uspAddContactEF">
+            <ScalarProperty Name="EmailAddress" ParameterName="EmailAddress" />
+            <ScalarProperty Name="LastName" ParameterName="LastName" />
+            <ScalarProperty Name="FirstName" ParameterName="FirstName" />
+            <ResultBinding Name="ContactID" ColumnName="NewContactId" />
+          </InsertFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="uspAddContactEF" FunctionName="dv409_AdventureWorksAssignmentModel.Store.uspAddContactEF" />
+    <FunctionImportMapping FunctionImportName="uspGetContact" FunctionName="dv409_AdventureWorksAssignmentModel.Store.uspGetContact">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dv409_AdventureWorksAssignmentModel.uspGetContact_Result">
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="uspRemoveContact" FunctionName="dv409_AdventureWorksAssignmentModel.Store.uspRemoveContact" />
+    <FunctionImportMapping FunctionImportName="uspUpdateContact" FunctionName="dv409_AdventureWorksAssignmentModel.Store.uspUpdateContact" />
+  </EntityContainerMapping>
+</Mapping>

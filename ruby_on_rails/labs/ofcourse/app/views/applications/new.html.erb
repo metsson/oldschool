@@ -1,0 +1,15 @@
+<% if @application.errors.any? %>
+  <div class="alert alert-danger">
+  <% @application.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+  </div>
+<% end %>
+<%= form_for @application, :role => 'form' do |app| %>
+  <div class="form-group">
+    <%= app.label :application_name %>
+    <%= app.text_field :application_name, :class => 'form-control' %>
+    <p class="help-block">Not feeling creative? How about "My Awesome Resource App"!</p>
+  </div>   
+  <%= submit_tag "Add application", :class => "btn btn-success btn-lg pull-right", :name => "submit", :disabled => false, :disable_with => "Making the thing..." %>  
+<% end %>

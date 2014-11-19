@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MovieDataModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MovieScoreModelEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Movies" EntityType="MovieDataModel.Movie" />
+    <FunctionImport Name="usp_AddMovie" ReturnType="Collection(Decimal)">
+      <Parameter Name="Score" Mode="In" Type="Double" />
+      <Parameter Name="LastCheck" Mode="In" Type="DateTime" />
+      <Parameter Name="IMDbID" Mode="In" Type="String" />
+      <Parameter Name="TitleSw" Mode="In" Type="String" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_DeleteMovie">
+      <Parameter Name="MovieID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_EditMovie">
+      <Parameter Name="MovieID" Mode="In" Type="Int32" />
+      <Parameter Name="Score" Mode="In" Type="Double" />
+      <Parameter Name="LastCheck" Mode="In" Type="DateTime" />
+      <Parameter Name="IMDbID" Mode="In" Type="String" />
+      <Parameter Name="TitleSw" Mode="In" Type="String" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_GetMovie" ReturnType="Collection(MovieDataModel.usp_GetMovie_Result)">
+      <Parameter Name="MovieID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_GetMovies" ReturnType="Collection(MovieDataModel.usp_GetMovies_Result)" />
+  </EntityContainer>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="MovieID" />
+    </Key>
+    <Property Name="MovieID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Score" Type="Double" Nullable="false" />
+    <Property Name="LastCheck" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="IMDbID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="TitleSw" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="600" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <ComplexType Name="usp_GetMovie_Result">
+    <Property Type="Int32" Name="MovieID" Nullable="false" />
+    <Property Type="Double" Name="Score" Nullable="false" />
+    <Property Type="DateTime" Name="LastCheck" Nullable="false" />
+    <Property Type="String" Name="IMDbID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TitleSw" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="600" />
+  </ComplexType>
+  <ComplexType Name="usp_GetMovies_Result">
+    <Property Type="Int32" Name="MovieID" Nullable="false" />
+    <Property Type="Double" Name="Score" Nullable="false" />
+    <Property Type="DateTime" Name="LastCheck" Nullable="false" />
+    <Property Type="String" Name="IMDbID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TitleSw" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="600" />
+  </ComplexType>
+</Schema>

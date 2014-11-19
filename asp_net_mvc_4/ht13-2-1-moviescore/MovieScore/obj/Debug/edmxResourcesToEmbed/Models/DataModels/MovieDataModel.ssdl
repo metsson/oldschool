@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MovieDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MovieDataModelStoreContainer">
+    <EntitySet Name="Movie" EntityType="MovieDataModel.Store.Movie" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="MovieID" />
+    </Key>
+    <Property Name="MovieID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Score" Type="float" Nullable="false" />
+    <Property Name="LastCheck" Type="datetime2" Nullable="false" />
+    <Property Name="IMDbID" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="TitleSw" Type="varchar" Nullable="false" MaxLength="80" />
+    <Property Name="Title" Type="varchar" Nullable="false" MaxLength="80" />
+    <Property Name="Description" Type="varchar" Nullable="false" MaxLength="600" />
+  </EntityType>
+  <Function Name="usp_AddMovie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Score" Type="float" Mode="In" />
+    <Parameter Name="LastCheck" Type="datetime2" Mode="In" />
+    <Parameter Name="IMDbID" Type="varchar" Mode="In" />
+    <Parameter Name="TitleSw" Type="varchar" Mode="In" />
+    <Parameter Name="Title" Type="varchar" Mode="In" />
+    <Parameter Name="Description" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_DeleteMovie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MovieID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_EditMovie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MovieID" Type="int" Mode="In" />
+    <Parameter Name="Score" Type="float" Mode="In" />
+    <Parameter Name="LastCheck" Type="datetime2" Mode="In" />
+    <Parameter Name="IMDbID" Type="varchar" Mode="In" />
+    <Parameter Name="TitleSw" Type="varchar" Mode="In" />
+    <Parameter Name="Title" Type="varchar" Mode="In" />
+    <Parameter Name="Description" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_GetMovie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MovieID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetMovies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+</Schema>

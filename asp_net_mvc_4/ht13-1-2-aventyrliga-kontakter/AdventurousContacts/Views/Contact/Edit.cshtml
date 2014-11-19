@@ -1,0 +1,27 @@
+﻿@model AdventurousContacts.Models.Contact
+
+@{
+    ViewBag.Title = "Redigera kontakt";
+}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+@if (Model != null)
+{
+        @* Render editor *@
+        <h2>Redigera kontaktuppgifter för @Model.FirstName @Model.LastName</h2>
+        @Html.Partial("_ContactForm")
+}
+else
+{
+        @* No contact found *@
+        @Html.Partial("_NotFound")
+}
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Tillbaka till kontaktlistan", "Index")
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

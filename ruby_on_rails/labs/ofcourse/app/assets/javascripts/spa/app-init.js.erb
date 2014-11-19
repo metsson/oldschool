@@ -1,0 +1,71 @@
+var ofcourse = angular.module('ofcourse', [
+    'ngRoute',
+    'ngSanitize',
+    'restangular',
+    'toaster'
+    ]);
+
+ofcourse.config(function ($routeProvider, RestangularProvider) {
+  // Route settings
+  $routeProvider
+    .when('/', {
+      controller: 'ListController',
+      templateUrl: 'assets/spa/partials/all.html'
+    })
+    .when('/add', {
+      controller: 'AddController',
+      templateUrl: 'assets/spa/partials/new.html'
+    })
+    .when('/search', {
+      controller: 'SearchController',
+      templateUrl: 'assets/spa/partials/search.html'
+    })    
+    .when('/update/:id', {
+      controller: 'UpdateController',
+      templateUrl: 'assets/spa/partials/update.html',
+      resolve: {
+        resource: function (Restangular, $route) {
+          return Restangular.one('resources', $route.current.params.id).get();
+        }
+      }
+    })
+    .otherwise({redirectTo: '/'});
+
+    // Restangular settings
+    RestangularProvider.setBaseUrl('/api/v1/');
+    // @todo Token is exposed!
+    RestangularProvider.setDefaultHeaders({ 'X-Access-Token': '4s5wtepow3w6063ef1n7mf9gjulrqqlb' });   
+
+    // Accessing resources http://goo.gl/LC815Y 
+    // but also adding new array to the collection for pagination values
+    RestangularProvider.setResponseExtractor(function(response, operation, what, url) {      
+      var newResponse;
+
+      // This is a get for a list so include the paginationd data
+      if (operation === "getList" && what === "resources") {
+        newResponse = response.data;             
+
+        if (response.pagination) {
+          newResponse.pagination = response.pagination;  
+        }
+      } else {
+        // Normally the operation is 'get' in this case
+        newResponse = response;        
+      }
+
+      return newResponse;
+    });
+
+    RestangularProvider.setErrorInterceptor(function(response, operation, what, url) {
+      // Try fetching API message for error else show generic message
+      var apiMessage = response.data[0];
+      
+      if (apiMessage) {
+        if (apiMessage.user_message &&
+            apiMessage.developer_message) {
+          alert(apiMessage.user_message);
+          console.log('DEVELOPER MESSAGE: ' + apiMessage.developer_message)
+        }
+      }
+    });    
+});

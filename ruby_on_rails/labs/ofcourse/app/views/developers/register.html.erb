@@ -1,0 +1,23 @@
+<% if @developer.errors.any? %>
+  <div class="alert alert-danger">
+  <% @developer.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+  </div>
+<% end %>
+<%= form_for @developer, :role => 'form' do |dev| %>
+  <div class="form-group">
+    <%= dev.label :email %>
+    <%= dev.text_field :email, :class => 'form-control', :type => 'email' %>
+  </div>  
+  <div class="form-group">
+    <%= dev.label :password %>
+    <%= dev.text_field :password, :class => 'form-control', :type => 'password' %>
+  </div>    
+  <div class="form-group">
+    <%= dev.label :password_confirmation %>
+    <%= dev.text_field :password_confirmation, :class => 'form-control', :type => 'password' %>
+  </div>    
+  <%= link_to 'Already have an account?', log_in_path, :class => 'btn btn-default btn-lg' %>
+  <%= submit_tag "Sign up", :class => "btn btn-success btn-lg pull-right", :name => "submit", :disabled => false, :disable_with => "Processing..." %>  
+<% end %>

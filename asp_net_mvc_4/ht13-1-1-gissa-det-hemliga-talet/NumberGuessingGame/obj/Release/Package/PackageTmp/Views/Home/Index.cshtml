@@ -1,0 +1,65 @@
+﻿@model NumberGuessingGame.ViewModels.HomeIndexViewModel
+
+@{
+    ViewBag.Title = "Gissa det hemliga talet MVC";
+}
+
+@if (Model.SecretNumber.CanMakeGuess)
+{
+    @*Render guessing form*@
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @Model.CurrentGuess(Model.SecretNumber.LastGuessedNumber)
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            { 
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("Ett fel inträffade! Vänligen rätta till följande:")
+                @Html.TextBoxFor(m => m.Guess)
+                <input type="submit" value="Gissa" />
+            }
+        </div>
+    </div>    
+    
+    @*Render guessing status*@
+    if (Model != null && Model.Guess != 0)
+    {
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" style="width: 30%">
+                <span>Gissningar @Model.SecretNumber.Count / 7</span>
+            </div>
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="@Model.GameProgress(Model.SecretNumber)" 
+            aria-valuemin="30" aria-valuemax="70" style="width: @Model.GameProgress(Model.SecretNumber)%">
+                <span>@Html.DisplayFor(m => m.SecretNumber.GuessHistory)</span>
+            </div>
+        </div>         
+    }
+}
+else
+{
+    @*Did the player guess right?*@
+    if (Model.RightGuess(Model.SecretNumber.LastGuessedNumber))
+    {        
+        <p><strong>Grattis!</strong></p>
+        <p>@Model.SecretNumber.Number var visst det hemliga talet, och du klarade det på @Model.SecretNumber.Count försök!</p>
+    }
+    else
+    {
+        @*Nope, game over!*@
+        <p>
+            Du har inga gissningar kvar.<br />
+            Men om du undrar, så var det hemliga talet <strong>@Model.SecretNumber.Number</strong>!        
+        </p>        
+    }
+    <p>@Html.ActionLink("Klicka här för att spela på nytt", "Index")</p>
+}
+
+@section scripts
+{
+    <script>
+        $(function () {
+            $("#Guess").focus();
+        });
+    </script>
+}

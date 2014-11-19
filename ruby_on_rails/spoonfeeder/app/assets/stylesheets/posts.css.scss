@@ -1,0 +1,59 @@
+// Place all the styles related to the Quotes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.posts {
+
+  h2 {
+    font-family: "Helvetica";
+    color: #485a65;
+    font-size: 3em;
+    font-weight: 100;
+  }
+
+  .post-box {
+    border-top: 1px solid #87d2d8;
+    background-color: #edede7;
+    width: 50%;
+    padding: 20px 20px 30px 40px;
+    margin: 10px auto;
+  }
+
+  .post-box:nth-of-type(2n) {
+    border-top: 1px solid #e1e5ad;
+  }
+
+  .post-box p, .single-post p {
+    font-family: "Georgia";
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    line-height: 1.5em;
+  }
+
+  .actions {
+    width: 50%;
+    margin: 10px auto 80px auto;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .single-post {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  hr {
+    border: none;
+    margin-top: 30px;
+    height: 1px;
+    color: #ddd;
+    background-color: #ddd;
+  }
+
+  small {
+    padding-top: 4px;
+    border-top: 1px solid #bbb;
+  }
+}

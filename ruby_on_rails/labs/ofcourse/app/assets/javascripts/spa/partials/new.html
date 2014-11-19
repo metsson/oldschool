@@ -1,0 +1,37 @@
+<div class="page-header">
+	<h1>Add a new resource</h1>
+</div>
+
+<form name="editForm" novalidate>	
+	<div class="form-group">
+	    <label for="resource_title">Title*</label>
+	    <input type="text" name="resource_title" ng-model="resource.title" class="form-control" placeholder="The title of the resource" autofocus=autofocus>
+	</div>
+	<div class="form-group">
+	    <label for="resource-content">Content*</label>
+	    <input type="text" name="resource_content" ng-model="resource.content" class="form-control" placeholder="Enter some content in here">
+	</div>
+	<div class="form-group">
+	    <label for="resource-type">Type of resource*</label>
+ 		<select class="form-control" ng-model="chosen_resource_type" ng-options="resourceType.resource_type.type_name for resourceType in resourceTypes">
+  		</select>
+	</div>	
+	<div class="form-group">
+	    <label for="resource-content">Tags</label>
+	    <input type="text" name="resource_tags" ng-model="resource.tags" class="form-control" placeholder="Enter tags seperated by comma or space">
+	</div>		
+
+	<div class="form-group">
+	    <label for="resource-license">Choose license</label>
+ 		<select class="form-control" ng-model="chosen_license" ng-change="licenseChosen()" ng-options="license.license.licence_type for license in licenses">
+  		</select>
+	</div>	
+	<small>
+		{{ about_license }}
+	</small>
+
+	<div class="pull-right">
+    	<a class="btn btn-warning" href="#/">Cancel</a>
+    	<a class="btn btn-success" ng-click="save()">Save</a>
+  	</div>	
+</form>

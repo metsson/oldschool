@@ -1,0 +1,9 @@
+﻿@model MovieScore.Models.Movie
+
+@if (Model != null)
+{
+    if (Model.MovieID != 0)
+    {
+        @Html.Partial("_MovieDetails", Model)
+    }
+}

@@ -1,0 +1,21 @@
+<div class="choo-choo-feed">
+  <h1>ChooChoo Activity Feed</h1>
+
+  <% @activities.each do |activity| %>
+    <div class="activity">
+
+      <p>
+        The <%= activity.last_updated_node_type.downcase %>
+        <%if activity.last_updated_node_type == 'Comment' %>
+         <span class="activity-var"><%= activity.last_updated_node.comment_entry %></span>
+        <%elsif activity.last_updated_node_type == 'Post'%>
+         <span class="activity-var"><%= activity.last_updated_node.title %></span>
+        <%end%>
+        was <%= activity.last_action %>
+        by <span class="activity-var"><%= activity.parent_node.user.name %></span>
+        <%=time_ago_in_words(activity.updated_at) %> ago.
+      </p>
+
+    </div>
+  <% end %>
+</div>

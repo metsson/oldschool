@@ -1,0 +1,34 @@
+﻿@model AdventurousContacts.Models.Contact
+
+@{
+    ViewBag.Title = "Bekräfta";
+}
+
+@if (Model != null)
+{
+@* Delete contact? *@
+    <h2>Bekräfta borttagning av kontakt</h2>
+    <p>
+        Vill du verkligen ta bort kontaktuppgifterna för @Model.FirstName @Model.LastName?
+    </p>
+
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <p>
+            <input type="submit" value="Ja, jag är säker." />
+        </p>
+    }
+}
+else
+{
+    @* No contact found *@
+    @Html.Partial("_NotFound")
+}
+    <div>
+        @Html.ActionLink("Tillbaka till kontaktlistan", "Index")
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,35 @@
+﻿@model AdventurousContacts.Models.Contact
+
+@{
+    ViewBag.Title = "Kontaktlista";
+}
+
+@if (Model != null && Model.HasStatus())
+{
+    if (Model.IsModified())
+    {
+        <div class="alert alert-info">
+            Dina ändringar för <strong>@Model.FirstName</strong> sparades.
+        </div>
+    }
+
+    if (Model.IsDeleted())
+    {
+        <div class="alert alert-info">
+            <strong>@Model.FirstName </strong> 
+            med tillhörande uppgifter är nu borttagen.
+        </div>
+    }
+
+    if (Model.IsNew())
+    {
+        <div class="alert alert-info">        
+            Kontakten <strong>@Model.FirstName @Model.LastName </strong> 
+            med @Model.EmailAddress som mailadress är nu sparad.
+        </div>
+    }
+    
+    <p>
+        @Html.ActionLink("Tillbaka till kontaktlistan", "Index")
+    </p>
+}
